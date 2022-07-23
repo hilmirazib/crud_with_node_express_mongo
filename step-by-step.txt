@@ -1,0 +1,63 @@
+buat folder project namanya bebas
+buat file server.js
+buka terminal
+npm init
+npm i express morgan nodemon ejs body-parser dotenv mongoose axios
+setelah install
+buka package.json
+tambahkan key "scripts": {
+  "start": "nodemon server.js"
+}
+
+#project structure
+baut folder assets
+didalamnya buat folder css, js dan img
+baut folder views
+buat folder server
+didalamnya buat folder controller, model, routes, database, services
+
+#http server
+buka server.js
+const express = require('express');
+const app = express();
+app.get('/', (req, res) => {
+    res.send('Web CRUD');
+});
+app.listen(3000, () => {
+    console.log(`Server is running on http://localhost:${3000}`);
+});
+buka terminal
+npm start
+maka akan tampilkan web CRUD
+buka kembali server.js
+tambahkan
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+}
+);
+buat file config.env
+ketikan PORT = 3000
+kembali ke server.js
+tambahkan dotenv
+const dotenv = require('dotenv');
+dotenv.config({ path: 'config.env' });
+panggil morgan
+const morgan = require('morgan');
+app.use(morgan('tiny'));
+maka seluruh codenya seperti ini
+
+const express = require('express');
+const dotenv = require('dotenv');
+const morgan = require('morgan');
+const app = express();
+dotenv.config({ path: 'config.env' });
+const PORT = process.env.PORT || 8080;
+app.use(morgan('tiny'));
+app.get('/', (req, res) => {
+    res.send('Web CRUD');
+});
+app.listen(3000, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
+https://www.youtube.com/watch?v=W1Kttu53qTg
